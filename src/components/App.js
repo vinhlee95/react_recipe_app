@@ -3,6 +3,7 @@ import classes from './App.css';
 import Recipe from './Recipe/recipe';
 import BackDrop from './UI/BackDrop/backDrop';
 import Modal from './UI/Modal/modal';
+import Button from './UI/Button/button';
 
 class App extends Component {
   constructor(props) {
@@ -36,14 +37,15 @@ class App extends Component {
     this.setState({ showModal: false })
   }
 
+
   render() {
     return (
       <div className={classes.App}>
         <h1>My recipes</h1> 
         {this.renderRecipes()}
-        <button className="btn-info" onClick={this.handleAddRecipe}>Add Recipe</button>
+        <Button name="Add Recipe" onClick={this.handleAddRecipe} backgroundColor="#337ab7" textColor="white" />
         <BackDrop showModal={this.state.showModal} >
-          <Modal handleCloseModal={this.handleCloseModal} />
+          <Modal handleCloseModal={this.handleCloseModal} handleAddRecipe={this.handleAddRecipe} />
         </BackDrop>
       </div>
     );
