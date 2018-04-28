@@ -1,0 +1,35 @@
+.Modal {
+   position: fixed;
+   top: 10%;
+   display: block;
+   width: 50%;
+   height: 45%;
+   border: 1px solid black;
+   z-index: 200;
+   background-color: white;
+   border-radius: 5px;
+}
+.addRecipeForm {
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   height: 100%;
+   width: 90%;
+   margin: 5px auto;
+}
+.addRecipeForm input {
+   border-radius: 3px;
+   border: .5px solid grey;
+   padding: 10px 5px;
+}
+.formInfo {
+   display: grid;
+   grid-template-columns: auto;
+   grid-gap: 10px;
+   margin-bottom: 30px;
+}
+.buttonContainer {
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-end;
+}
