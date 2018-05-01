@@ -37,6 +37,15 @@ class App extends Component {
     this.setState({ showModal: false })
   }
 
+  handleAddRecipeForm = (name, ingredients) => {
+    const newRecipe = {name, ingredients};
+    const updatedRecipes = [
+      ...this.state.recipes,
+      newRecipe
+    ];
+    this.setState({ recipes: updatedRecipes, showModal: false });
+  }
+
 
   render() {
     return (
@@ -45,7 +54,7 @@ class App extends Component {
         {this.renderRecipes()}
         <Button name="Add Recipe" onClick={this.handleAddRecipe} backgroundColor="#337ab7" textColor="white" />
         <BackDrop showModal={this.state.showModal} >
-          <Modal handleCloseModal={this.handleCloseModal} handleAddRecipe={this.handleAddRecipe} />
+          <Modal handleCloseModal={this.handleCloseModal} handleAddRecipeForm={this.handleAddRecipeForm} />
         </BackDrop>
       </div>
     );
