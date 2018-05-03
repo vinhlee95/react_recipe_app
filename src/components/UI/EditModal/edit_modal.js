@@ -54,16 +54,11 @@ class EditModal extends Component {
 
    handleRemoveIngredient = (e,id) => {
       e.preventDefault();
-      const ingredients = this.state.ingredients;
-      this.setState({ 
-         ingredients: [
-            ...ingredients.slice(1, id),
-            ...ingredients.slice(id+1)
-         ]
-      })
+      let ingredients = this.state.ingredients;
+      ingredients.splice(id, 1);
+      this.setState({ ingredients });
    }
-
-
+   
    render() {
       return (
          <div className={classes.Modal}>
