@@ -50,12 +50,8 @@ class App extends Component {
 
   handleDeleteRecipe = id => {
     let recipes = this.state.recipes;
-    this.setState({
-      recipes: [
-        ...recipes.slice(1, id),
-        ...recipes.slice(id+1)
-      ]
-    });
+    recipes.splice(id, 1);
+    this.setState({ recipes });
   }
 
   handleCloseModal = () => {

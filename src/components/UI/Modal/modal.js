@@ -73,7 +73,7 @@ class Modal extends Component {
                   </ul>
                   <input 
                      placeholder="Ingredient name"
-                     value={this.state.ingredients}
+                     value={this.state.ingredient}
                      onChange={this.handleChangeIngredient} />
                   <Button 
                      name="Add Ingredient" 
