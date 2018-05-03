@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
-import classes from './modal.css';
+import classes from './edit_modal.css';
 import Button from '../Button/button';
 
-class Modal extends Component {
+class EditModal extends Component {
    state = {
       recipeName: '',
       ingredient: '',
-      ingredients: []
+      ingredients: [],
    };
 
-   handleChangeRecipe = (e) => {
+   componentWillMount() {
+      this.setState({
+         ingredients: this.props.ingredients,
+         recipeName: this.props.recipeName
+      })
+   }
+
+   handleChangeRecipeName = (e) => {
       this.setState({ recipeName: e.target.value });
    }
 
@@ -26,11 +33,13 @@ class Modal extends Component {
       this.setState({ ingredients: updatedIngredients, ingredient: '' });
    }
 
-   handleAddRecipeForm = (e) => {
-      const { recipeName, ingredients } = this.state;
+   handleUpdateRecipe(e, id) {
       e.preventDefault();
-      this.props.handleAddRecipeForm(recipeName, ingredients);
+      const { recipeName, ingredients } = this.state;
+      this.props.handleUpdateRecipe(recipeName, ingredients,id);
+      this.props.closeEditModal();
    }
+
 
    renderIngredients() {
       return this.state.ingredients.map((ingredient, id) => {
@@ -60,11 +69,11 @@ class Modal extends Component {
          <div className={classes.Modal}>
             <form className={classes.addRecipeForm} >
                <div className={classes.formInfo}>
-                  <h4>Add a Recipe</h4>
+                  <h4>Edit recipe</h4>
                   <label>Recipe</label>
                   <input 
-                     placeholder="Recipe Name" 
-                     onChange={this.handleChangeRecipe}
+                     placeholder={this.state.recipeName}
+                     onChange={this.handleChangeRecipeName}
                      value={this.state.recipeName} />
 
                   <label>Ingredients</label>
@@ -73,7 +82,7 @@ class Modal extends Component {
                   </ul>
                   <input 
                      placeholder="Ingredient name"
-                     value={this.state.ingredients}
+                     value={this.state.ingredient}
                      onChange={this.handleChangeIngredient} />
                   <Button 
                      name="Add Ingredient" 
@@ -83,11 +92,11 @@ class Modal extends Component {
                </div>
                <div className={classes.buttonContainer}>
                   <Button 
-                     name="Add Recipe" 
+                     name="Change" 
                      backgroundColor="#337ab7" 
                      textColor="white"
-                     onClick={this.handleAddRecipeForm} />
-                  <Button name="Close" marginLeft="10px" onClick={() => this.props.handleCloseModal()} />
+                     onClick={e => this.handleUpdateRecipe(e, this.props.id)} />
+                  <Button name="Cancel" marginLeft="10px" onClick={() => this.props.handleCloseModal()} />
                </div>
             </form>
          </div>
@@ -95,4 +104,4 @@ class Modal extends Component {
    }
 }
 
-export default Modal;
+export default EditModal;
